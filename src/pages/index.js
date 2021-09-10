@@ -53,38 +53,40 @@ const HomePage = () => {
     <Page jsonLdType={'Course'}>
       <main>
         <div style={landingStyles}>
-        <Container>
-          <Row style={alignCenterStyles}>
-                <Col style={imageCenterStyles}>
-                  <img src={M365CertificationImg} alt="Microsoft 365 MS-500 Logo" width='340' height='340'/>
-                </Col>
-                <Col>
-                  <Row>
-                    <h1>Get Certified in MS-500 Microsoft 365 Security Administration</h1>
-                  </Row>
+          <Container>
+            <Row style={alignCenterStyles}>
+              <Col style={imageCenterStyles}>
+                <img src={M365CertificationImg} alt="Microsoft 365 MS-500 Logo" width='340' height='340'/>
+              </Col>
+              <Col>
+                <Row>
+                  <h1>Get Certified in MS-500 Microsoft 365 Security Administration</h1>
+                </Row>
                   { uid
-                      ? (
+                    ? (
+                      <Row style={buttonStyles}>
+                        <Button variant="primary" as={Link} size="lg" to='/tests'>Go to tests</Button>
+                      </Row>
+                    ) : (
+                      <span>
                         <Row style={buttonStyles}>
-                          <Button variant="primary" as={Link} size="lg" to='/tests'>Go to tests</Button>
+                          <Button variant="primary" as={Link} size="lg" to='/sign-up'>Get Started Now</Button>
                         </Row>
-                      )
-                      : (
-                        <span>
-                          <Row style={buttonStyles}>
-                            <Button variant="primary" as={Link} size="lg" to='/sign-up'>Get Started Now</Button>
-                          </Row>
-                          <Row style={buttonStyles}>
-                            <Button variant="secondary" as={Link} size="lg" to='/login'>I already have an account</Button>
-                          </Row>
-                        </span>
-                      )
-                    }
-                    <Row style={buttonStyles}>
-                      <Button variant="info" as={Link} size="lg" to='/course/ms-500/browse-questions/'>Browse Questions</Button>
-                    </Row>
-                </Col>
-              </Row>
+                        <Row style={buttonStyles}>
+                          <Button variant="secondary" as={Link} size="lg" to='/login'>I already have an account</Button>
+                        </Row>
+                      </span>
+                    )
+                  }
+                <Row style={buttonStyles}>
+                  <Button variant="info" as={Link} size="lg" to='/course/ms-500/browse-questions/'>Browse Questions</Button>
+                </Row>
+              </Col>
+            </Row>
           </Container>
+        </div>
+        <div>
+          <h2>Hello</h2>
         </div>
       </main>
     </Page>
