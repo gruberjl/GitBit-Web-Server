@@ -103,7 +103,7 @@ const HomePage = () => {
                   { uid
                     ? (
                       <Row style={buttonStyles}>
-                        <Button variant="primary" as={Link} size="lg" to='/tests'>Go to tests</Button>
+                        <Button variant="primary" as={Link} size="lg" to='/course?courseId=MS-500'>Go to course</Button>
                       </Row>
                     ) : (
                       <span>

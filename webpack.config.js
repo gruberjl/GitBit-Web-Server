@@ -4,10 +4,25 @@ const CopyPlugin = require("copy-webpack-plugin")
 const ENV = process.env.NODE_ENV || 'development'
 console.log(`"${ENV}"`)
 
+const pages = [
+  'index',
+  'login',
+  'sign-up'
+]
+
 module.exports = {
-  entry: path.join(__dirname, "src", "index.js"),
+  entry: pages.reduce((config, page) => {
+    config[page] = path.join(__dirname, "src", 'pages', `${page}.js`)
+    return config
+  }, {}),
   output: {
-    path:path.resolve(__dirname, "docs"),
+    filename: "[name].js",
+    path: path.resolve(__dirname, "docs"),
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
   },
   mode: ENV,
   module: {
@@ -33,16 +48,27 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "index.html"),
-    }),
     new CopyPlugin({
       patterns: [
         { from: path.join(__dirname, "src", "assets"), to: path.join(__dirname, 'docs') }
       ],
     })
-  ],
+  ].concat(
+    pages.map(
+      (page) =>
+        new HtmlWebpackPlugin({
+          inject: true,
+          template: path.join(__dirname, "src", `index.html`),
+          filename: `${page}.html`,
+          chunks: [page],
+        })
+    )
+  ),
   devServer: {
     historyApiFallback: true,
   }
 }
+//
+// new HtmlWebpackPlugin({
+//   template: path.join(__dirname, "src", "index.html"),
+// })
