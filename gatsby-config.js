@@ -3,5 +3,6 @@ module.exports = {
     siteUrl: "https://www.gitbit.org",
     title: "GitBit",
   },
+  pathPrefix: 'GitBit-Web-Server',
   plugins: [],
 };
